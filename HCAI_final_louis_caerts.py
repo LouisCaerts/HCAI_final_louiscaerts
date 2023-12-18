@@ -307,7 +307,6 @@ while not end_of_vid(cap):
     
     # Calculate the eye openness ratio and add it to the queue
     ratioRightEye = int((lengthVerRightEye / lengthHorRightEye) * 1000)
-    # ratioRightEye = int((lengthVerRightEye * lengthHorRightEye) / 10)
     ratioListRightEye.append(ratioRightEye)
     if len(ratioListRightEye) > 2:
       ratioListRightEye.pop(0)
