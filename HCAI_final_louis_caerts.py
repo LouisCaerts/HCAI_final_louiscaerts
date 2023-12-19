@@ -1,6 +1,7 @@
 """
 This python program uses Mediapipe's facial landmarks detection model to count and record the times of blinking/yawning.
 Commentary has been provided throughout the entirety of this file to guide the reader throughout the workings of the code.
+All variables in this version of the code have been calibrated (manually) for the test.mp4 file.
 
 @author: Louis Caerts
 @date: 21.12.2023
@@ -183,7 +184,6 @@ def vidpos_to_timecode(framerate, frameid):
 def create_csv_file(name):
   """
   Creates a csv file to write blinking and yawning timecodes to.
-  Fails if a file of the same name already exists.
 
   Args:
     name: The name of the file one wants created.
@@ -225,8 +225,8 @@ ratioListRightEye = []
 ratioListMouth = []
 blinking = False
 yawning = False
-blinkThreshold = 220
-yawnThreshold = 450
+blinkThreshold = 150  # Manually calibrated for test.mp4
+yawnThreshold = 300   # Manually calibrated test.mp4
 
 # Variables needed to save blinking/yawning data
 blinkCounter = 0
@@ -251,7 +251,7 @@ mouthPlotY = LivePlot(640, 360, [0, yawnThreshold*2], invert=True)
 ###########################################################################################
 
 # Open the video file
-videoName = 'P028-3-final-cropped'
+videoName = 'test'
 cap = cv2.VideoCapture(videoName + ".mp4")
 if not cap.isOpened():
   print(f'\033[91m{"ERROR: " + videoName + ".mp4 was not found."}\033[0m')
